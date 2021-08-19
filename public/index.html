@@ -27,18 +27,31 @@
   <title>Chat Vanilla</title>
 </head>
 <body>
-  <div class="container mx-auto ">
-   <nav class="bg-gray-500 w-full h-16 flex items-center p-3 justify-between">
-      <span class="text-white" id='nombreUsuario'>Chat 1 a 1 </span>
-      <div id="botones">    
+  <div class="container mx-auto mt-8" id='chat'>
+   <nav class=" w-full h-16 flex items-center p-3 justify-between" id='panelHeader'>
+     <div class="flex items-center">
+      <img id='img' src="" alt="">
+     <span class="text-black ml-4" id='nombreUsuario'>Chat 1 a 1 </span>
+     </div>
+      <div id="botones"></div> 
    </nav>
-    <main id="contenidoProtegido" class=" mt-4 px-4  overflow-y-scroll">
-      oo
-      
+    <main id="contenidoProtegido" >
+      <div class="backgroundChat z-50 ">
+      </div>
+      <div id="contentChat" class=" pt-4 px-4 overflow-y-scroll">
+      </div>
     </main>
-    <form  id='formulario'>
-      <input type="text" class="p-2 w-5/6" id='inputChat'>
-      <button type="submit" class="bg-yellow-500 rounded p-2 text-white font-medium ">Enviar</button>
+    <form  id='formulario' class="p-1.5 flex">
+      <div class="interactions">
+        <img src="img/carita.svg" alt="" class="icono">
+        <img src="img/adjuntar.svg" alt="" class="icono">
+      </div>
+      <div class="contentInput w-full">
+           <input type="text" class=" " id='inputChat' placeholder="Type a message">
+            <img src="img/microfono.svg" alt="" class="icono">
+      </div>
+    
+      <!-- <button type="submit" class="bg-yellow-500 rounded p-2 text-white font-medium ">Enviar</button> -->
     </form>
   </div>
 </body>

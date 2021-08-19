@@ -3,6 +3,8 @@ const nombreUsuario = document.getElementById('nombreUsuario')
 const contenidoProtegido = document.getElementById('contenidoProtegido')
 const formulario = document.getElementById('formulario')
 const inputChat = document.getElementById('inputChat')
+const img = document.getElementById('img')
+const contentChat = document.getElementById('contentChat')
 firebase.auth().onAuthStateChanged((user) => {
  
   if (user) {
@@ -14,7 +16,10 @@ firebase.auth().onAuthStateChanged((user) => {
     `
     nombreUsuario.innerHTML  = user.displayName;
     contenidoChat(user)
-    formulario.classList = 'bg-gray-700 p-3 container mx-auto fixed bottom-0'
+    formulario.classList = "p-1.5 flex w-full";
+    img.classList = 'rounded-full w-10'
+    img.src = user.photoURL
+    console.log(user)
      cerrarSesion()
     // ...
   } else {
@@ -28,6 +33,7 @@ firebase.auth().onAuthStateChanged((user) => {
       <p class="mt-4 text-gray text-center">Debes iniciar Sesion</p>
      `
      formulario.classList = 'bg-gray-700 p-3 container mx-auto fixed bottom-0 hidden'
+     img.classList = "hidden";
      iniciarSesion()
   }
 });
@@ -52,23 +58,27 @@ const contenidoChat = (user)=> {
 
      firebase.firestore().collection('chat').orderBy('fecha')
      .onSnapshot(query => {
-       contenidoProtegido.innerHTML = ''
+       contentChat.innerHTML = ''
        query.forEach(doc => {
          if(doc.data().uid === user.uid){
            console.log(doc.data())
-           contenidoProtegido.innerHTML += /*html*/ `
-           <div class="flex justify-end">
-           <span class="rounded bg-blue-200 ">${doc.data().texto}</span>
-           </div>`
+           contentChat.innerHTML += /*html*/ `
+           <div class="flex justify-end mensajes ">
+           <span class="rounded-lg mb-0.5" id='mensajeStart'>${
+             doc.data().texto
+           }</span>
+           </div>`;
          }
          else {
-           contenidoProtegido.innerHTML +=/*html*/`
-            <div class="flex justify-start">
-              <span class="rounded bg-gray-200 ">${doc.data().texto}</span>
+           contentChat.innerHTML += /*html*/ `
+            <div class="flex justify-start " >
+              <span class="rounded-lg  " id="mensajeFinal">${
+                doc.data().texto
+              }</span>
             </div>
-           `
+           `;
          }
-         contenidoProtegido.scrollTop = contenidoProtegido.scrollHeight
+         contentChat.scrollTop = contentChat.scrollHeight
        })
      })
 }
@@ -84,18 +94,9 @@ const iniciarSesion =() => {
     .then((result) => {
     
     var credential = result.credential;
-    var token = credential.accessToken;
-    var user = result.user;
     // ...
   }).catch((error) => {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    // ...
+    console.log(error)
   });
     } catch (error) {
       console.log(error)
