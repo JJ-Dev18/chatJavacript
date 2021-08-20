@@ -92,6 +92,7 @@
 }
 body{
   background: #dddbd1;
+  overflow: hidden;
 }
 body::after{
     position: fixed;

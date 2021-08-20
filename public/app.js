@@ -19,7 +19,7 @@ firebase.auth().onAuthStateChanged((user) => {
     formulario.classList = "p-1.5 flex w-full";
     img.classList = 'rounded-full w-10'
     img.src = user.photoURL
-    console.log(user)
+    
      cerrarSesion()
     // ...
   } else {
@@ -29,11 +29,13 @@ firebase.auth().onAuthStateChanged((user) => {
      <button class="bg-green-500 rounded text-white p-3 mr-2 hover:bg-green-600" id='btnAcceder'>Acceder</button>
      `
      nombreUsuario.innerHTML = 'Chat'
-     contenidoProtegido.innerHTML = /*html*/`
+     img.classList = "w-16";
+     img.src = 'img/logo.png'
+     contentChat.innerHTML = /*html*/`
       <p class="mt-4 text-gray text-center">Debes iniciar Sesion</p>
      `
      formulario.classList = 'bg-gray-700 p-3 container mx-auto fixed bottom-0 hidden'
-     img.classList = "hidden";
+    //  img.classList = "hidden";
      iniciarSesion()
   }
 });
