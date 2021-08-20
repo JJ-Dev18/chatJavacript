@@ -11,7 +11,7 @@
   box-sizing: border-box;
 }
 #contenidoProtegido{
-  height: 80vh;
+  height: 70vh;
   position: relative;
   background-color: rgb(229, 221, 213);
   /* background-color: inherit; */
@@ -21,13 +21,12 @@
   display: flex;
   padding: 5px 10px;
 }
-.icono{
-      width: 26px;
+.interactions > img , .contentInput > img {
+     width: 26px;
     height: 42px;
     margin-right: 8px;
-    
-   
 }
+
 .contentInput{
   display: flex;
   padding: 5px 10px;
